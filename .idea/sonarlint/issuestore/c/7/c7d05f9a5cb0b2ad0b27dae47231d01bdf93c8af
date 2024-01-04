@@ -1,0 +1,9 @@
+
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(š£¢î8ÂÃåÏÌ1
+I
+java:S1172",Remove this unused method parameter "price".(š£¢î8»ìåÏÌ1
+F
+java:S1068")Remove this unused "price" private field.(¢¼•8‰ôÏÌ1
+Q
+java:S1144"4Remove this unused private "validationPrice" method.(š£¢î8ÄÃåÏÌ1
