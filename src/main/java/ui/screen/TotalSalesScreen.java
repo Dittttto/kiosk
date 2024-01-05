@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class TotalSalesScreen {
 
-    public void active(Map<String, BigDecimal> salesHistory, BigDecimal totalSaleAmount) {
+    public void active(final Map<String, BigDecimal> salesHistory,final BigDecimal totalSaleAmount) {
         showTotalSaleAmount(totalSaleAmount);
         System.out.println();
         showTotalSales(salesHistory);
@@ -19,11 +19,11 @@ public class TotalSalesScreen {
         InputReader.readCommandInput(YesNoCommand::isYes);
     }
 
-    public void showTotalSales(Map<String, BigDecimal> salesHistory) {
+    public void showTotalSales(final Map<String, BigDecimal> salesHistory) {
         System.out.println("[ 총 판매상품 목록 현항 ]");
         System.out.println("현재까지 총 판매된 상품 목록은 아래와 같습니다.");
         System.out.println();
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         salesHistory.keySet().stream().forEach(key -> {
             sb.append("- ")
                     .append(StringFormatter.namePriceTemplate(key, salesHistory.get(key)))
@@ -33,7 +33,7 @@ public class TotalSalesScreen {
         System.out.println(sb);
     }
 
-    public void showTotalSaleAmount(BigDecimal totalSaleAmount) {
+    public void showTotalSaleAmount(final BigDecimal totalSaleAmount) {
         System.out.println("총 판매금액 현항");
         System.out.println("현재까지 총 판매된 금액은 [ W " + StringFormatter.priceToWon(totalSaleAmount) + " ] 입니다.");
     }

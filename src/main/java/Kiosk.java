@@ -10,35 +10,39 @@ import ui.toast.*;
 
 public class Kiosk {
     public static void main(String[] args) {
-        ProductManager productManager = new ProductManager();
-        MainScreen mainScreen = new MainScreen();
-        ProductScreen productScreen = new ProductScreen();
-        TotalSalesScreen totalSalesScreen = new TotalSalesScreen();
-        AddCartToast addCartToast = new AddCartToast();
-        CartManager cartManager = new CartManager();
-        OrderConfirmScreen orderConfirmScreen = new OrderConfirmScreen();
-        HistoryManager historyManager = new HistoryManager();
-        OrderNumberToast orderNumberToast = new OrderNumberToast();
-        OrderCancelToast orderCancelToast = new OrderCancelToast();
-        OptionManager optionManager = new OptionManager();
-        OptionToast optionToast = new OptionToast();
-        ScreenCore core = new ScreenCore(
+        // Manager
+        final ProductManager productManager = new ProductManager();
+        final HistoryManager historyManager = new HistoryManager();
+        final OptionManager optionManager = new OptionManager();
+        final CartManager cartManager = new CartManager();
+
+        // Screen
+        final OrderConfirmScreen orderConfirmScreen = new OrderConfirmScreen();
+        final TotalSalesScreen totalSalesScreen = new TotalSalesScreen();
+        final ProductScreen productScreen = new ProductScreen();
+        final MainScreen mainScreen = new MainScreen();
+
+        // Toast
+        final OrderNumberToast orderNumberToast = new OrderNumberToast();
+        final OrderCancelToast orderCancelToast = new OrderCancelToast();
+        final AddCartToast addCartToast = new AddCartToast();
+        final OptionToast optionToast = new OptionToast();
+
+        final ScreenCore core = new ScreenCore(
                 productManager,
-                mainScreen,
-                productScreen,
-                totalSalesScreen,
-                addCartToast,
+                historyManager,
+                optionManager,
                 cartManager,
                 orderConfirmScreen,
-                historyManager,
+                totalSalesScreen,
+                productScreen,
+                mainScreen,
                 orderNumberToast,
                 orderCancelToast,
-                optionManager,
+                addCartToast,
                 optionToast
         );
+
         core.activeMainScreen();
-    }
-    private void loadComponent() {
-        // TODO initialize all class component
     }
 }

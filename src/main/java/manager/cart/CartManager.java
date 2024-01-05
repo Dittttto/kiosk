@@ -6,7 +6,7 @@ import domain.order.OrderList;
 public class CartManager {
     private final Cart cart = new Cart();
 
-    public void addToCart(Order order) {
+    public void addToCart(final Order order) {
         cart.insert(order);
     }
 

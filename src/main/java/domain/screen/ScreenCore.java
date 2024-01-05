@@ -20,50 +20,52 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ScreenCore {
+    // Manager
     private final ProductManager productManager;
-    private final CartManager cartManager;
     private final HistoryManager historyManager;
     private final OptionManager optionManager;
+    private final CartManager cartManager;
 
-    private final MainScreen mainScreen;
-    private final ProductScreen productScreen;
-    private final TotalSalesScreen totalSalesScreen;
-
-    private final AddCartToast addCartToast;
+    // Screen
     private final OrderConfirmScreen orderConfirmScreen;
+    private final TotalSalesScreen totalSalesScreen;
+    private final ProductScreen productScreen;
+    private final MainScreen mainScreen;
+
+    // Toast
     private final OrderNumberToast orderNumberToast;
     private final OrderCancelToast orderCancelToast;
+    private final AddCartToast addCartToast;
     private final OptionToast optionToast;
 
-    public ScreenCore(ProductManager manager,
-                      MainScreen mainScreen,
-                      ProductScreen productScreen,
-                      TotalSalesScreen totalSalesScreen,
-                      AddCartToast addCartToast,
+    public ScreenCore(ProductManager productManager,
+                      HistoryManager historyManager,
+                      OptionManager optionManager,
                       CartManager cartManager,
                       OrderConfirmScreen orderConfirmScreen,
-                      HistoryManager historyManager,
+                      TotalSalesScreen totalSalesScreen,
+                      ProductScreen productScreen,
+                      MainScreen mainScreen,
                       OrderNumberToast orderNumberToast,
                       OrderCancelToast orderCancelToast,
-                      OptionManager optionManager,
-                      OptionToast optionToast
-                      ) {
-        this.productManager = manager;
-        this.mainScreen = mainScreen;
-        this.productScreen = productScreen;
-        this.totalSalesScreen = totalSalesScreen;
-        this.addCartToast = addCartToast;
+                      AddCartToast addCartToast,
+                      OptionToast optionToast) {
+        this.productManager = productManager;
+        this.historyManager = historyManager;
+        this.optionManager = optionManager;
         this.cartManager = cartManager;
         this.orderConfirmScreen = orderConfirmScreen;
-        this.historyManager = historyManager;
+        this.totalSalesScreen = totalSalesScreen;
+        this.productScreen = productScreen;
+        this.mainScreen = mainScreen;
         this.orderNumberToast = orderNumberToast;
         this.orderCancelToast = orderCancelToast;
-        this.optionManager = optionManager;
+        this.addCartToast = addCartToast;
         this.optionToast = optionToast;
     }
 
     public void activeMainScreen() {
-        InputCommand command = mainScreen.active();
+        final InputCommand command = mainScreen.active();
         switch (command) {
             case SHUTDOWN -> shutdown();
             case TOTAL_SALES -> activeTotalSalesScreen();
@@ -74,8 +76,8 @@ public class ScreenCore {
     }
 
     private void activeTotalSalesScreen() {
-        BigDecimal totalSaleAmount = historyManager.getTotalSaleAmount();
-        Map<String, BigDecimal> salesHistory = historyManager.getSalesHistory();
+        final BigDecimal totalSaleAmount = historyManager.getTotalSaleAmount();
+        final Map<String, BigDecimal> salesHistory = historyManager.getSalesHistory();
         totalSalesScreen.active(salesHistory, totalSaleAmount);
         activeMainScreen();
     }
@@ -109,9 +111,9 @@ public class ScreenCore {
         return false;
     }
 
-    private void activeProductScreen(String menu) {
-        List<Product> products = productManager.getProductsByMenu(menu);
-        Product product = productScreen.active(products, menu);
+    private void activeProductScreen(final String menu) {
+        final List<Product> products = productManager.getProductsByMenu(menu);
+        final Product product = productScreen.active(products, menu);
         Order order = new Order(product.getName(),
                 product.getDescription(),
                 product.getPrice());
@@ -119,9 +121,9 @@ public class ScreenCore {
         activeAddCartPopUp(order, menu);
     }
 
-    private Order activeOptionToast(Order order, String menu) {
-        List<Option> options = optionManager.getOptions(menu);
-        Option selectOption = optionToast.active(options, order);
+    private Order activeOptionToast(final Order order, final String menu) {
+        final List<Option> options = optionManager.getOptions(menu);
+        final Option selectOption = optionToast.active(options, order);
         return new Order(
                 order.getName(),
                 order.getDescription(),
@@ -130,15 +132,15 @@ public class ScreenCore {
     }
 
 
-    private void activeOrderNumberPopUp(long orderNumber) {
+    private void activeOrderNumberPopUp(final long orderNumber) {
         orderNumberToast.active(orderNumber);
         setTimer();
     }
 
     private void setTimer() {
-        long countTime = 3000L;
-        Timer timer = new Timer("Timer");
-        TimerTask task = new TimerTask() {
+        final long countTime = 3000L;
+        final Timer timer = new Timer("Timer");
+        final TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 activeMainScreen();
@@ -156,19 +158,20 @@ public class ScreenCore {
             return;
         }
 
-        OrderList orders = cartManager.getOrders();
-        boolean confirmOrder = orderConfirmScreen.active(orders);
+        final OrderList orders = cartManager.getOrders();
+        final boolean confirmOrder = orderConfirmScreen.active(orders);
 
         if (!confirmOrder) {
             activeMainScreen();
             return;
         }
+
         cartManager.clearCart();
         activeOrderNumberPopUp(historyManager.makeOrder(orders));
     }
 
-    private void activeAddCartPopUp(Order order, String menu) {
-        boolean isAdd = addCartToast.active(order);
+    private void activeAddCartPopUp(final Order order,final String menu) {
+        final boolean isAdd = addCartToast.active(order);
 
         if (!isAdd) {
             activeProductScreen(menu);

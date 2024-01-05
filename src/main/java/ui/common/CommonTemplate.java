@@ -10,7 +10,7 @@ public class CommonTemplate {
         System.out.println();
     }
 
-    public static void showMenuTitle(String title) {
+    public static void showMenuTitle(final String title) {
         System.out.println("[ " + title + " MENU ]");
     }
 }

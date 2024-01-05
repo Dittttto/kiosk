@@ -13,13 +13,13 @@ public enum MenuCategory {
     private final String name;
     private final String description;
 
-    MenuCategory(String name, String description) {
+    MenuCategory(final String name, final String description) {
         this.name = name;
         this.description = description;
     }
 
     public static Map<String, MenuCategory> getMenuCategoryMap() {
-        Map<String, MenuCategory> map = new HashMap<>();
+        final Map<String, MenuCategory> map = new HashMap<>();
 
         for (MenuCategory category : MenuCategory.values()) {
             map.put(category.name.toUpperCase(), category);

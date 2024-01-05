@@ -8,7 +8,7 @@ import static domain.screen.YesNoCommand.YES;
 import static util.StringFormatter.nameDescPriceTemplate;
 
 public class AddCartToast {
-    public boolean active(Order order) {
+    public boolean active(final Order order) {
         showAddCartTemplate(order);
 
         YesNoCommand yesNoCommand = InputReader.readCommandInput(YesNoCommand::getCommand);
@@ -20,8 +20,8 @@ public class AddCartToast {
         return yesNoCommand.equals(YES);
     }
 
-    private void showAddCartTemplate(Order order) {
-        String orderTemplate = nameDescPriceTemplate(
+    private void showAddCartTemplate(final Order order) {
+        final String orderTemplate = nameDescPriceTemplate(
                 order.getName(),
                 order.getDescription(),
                 order.getPrice());

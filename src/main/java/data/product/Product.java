@@ -37,7 +37,7 @@ public enum Product {
     private final BigDecimal price;
     private final String description;
 
-    Product(MenuCategory category, String name, BigDecimal price, String description) {
+    Product(final MenuCategory category, final String name, final BigDecimal price, final String description) {
         this.category = category;
         this.name = name;
         this.price = price;

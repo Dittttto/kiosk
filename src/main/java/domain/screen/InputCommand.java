@@ -16,11 +16,11 @@ public enum InputCommand {
 
     private final int number;
 
-    InputCommand(int number) {
+    InputCommand(final int number) {
         this.number = number;
     }
 
-    public static InputCommand getCommand(Integer number) {
+    public static InputCommand getCommand(final int number) {
         return Arrays.stream(InputCommand.values())
                 .filter(inputCommand -> inputCommand.number == number)
                 .findFirst()

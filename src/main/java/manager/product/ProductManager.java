@@ -8,7 +8,7 @@ import java.util.List;
 import static data.product.Product.*;
 
 public class ProductManager {
-    public List<Product> getProductsByMenu(String menu) {
+    public List<Product> getProductsByMenu(final String menu) {
         return Arrays.stream(values())
                 .filter(value -> value.getCategory().name().equals(menu))
                 .map(value

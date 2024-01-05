@@ -11,7 +11,7 @@ public enum SauceSizeOption implements Option {
     private final String name;
     private final BigDecimal addPrice;
 
-    SauceSizeOption(String name, BigDecimal addPrice) {
+    SauceSizeOption(final String name,final BigDecimal addPrice) {
         this.name = name;
         this.addPrice = addPrice;
     }

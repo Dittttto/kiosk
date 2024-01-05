@@ -11,7 +11,7 @@ public enum GlassSizeOption implements Option {
     private final String name;
     private final BigDecimal addPrice;
 
-    GlassSizeOption(String name, BigDecimal addPrice) {
+    GlassSizeOption(final String name,final BigDecimal addPrice) {
         this.name = name;
         this.addPrice = addPrice;
     }

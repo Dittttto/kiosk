@@ -12,7 +12,7 @@ public class InputReader {
         return scanner.nextLine();
     }
 
-    public static <T> T readCommandInput(IntFunction<T> resultMapper) {
+    public static <T> T readCommandInput(final IntFunction<T> resultMapper) {
         T result;
         while (true) {
             try {
@@ -26,7 +26,7 @@ public class InputReader {
         return result;
     }
 
-    public static <T> T readProductInput(IntFunction<T> resultMapper) {
+    public static <T> T readProductInput(final IntFunction<T> resultMapper) {
         T result;
         while (true) {
             try {
