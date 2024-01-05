@@ -170,7 +170,7 @@ public class ScreenCore {
         activeOrderNumberPopUp(historyManager.makeOrder(orders));
     }
 
-    private void activeAddCartPopUp(final Order order,final String menu) {
+    private void activeAddCartPopUp(final Order order, final String menu) {
         final boolean isAdd = addCartToast.active(order);
 
         if (!isAdd) {

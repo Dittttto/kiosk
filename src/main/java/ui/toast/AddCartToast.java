@@ -10,7 +10,6 @@ import static util.StringFormatter.nameDescPriceTemplate;
 public class AddCartToast {
     public boolean active(final Order order) {
         showAddCartTemplate(order);
-
         YesNoCommand yesNoCommand = InputReader.readCommandInput(YesNoCommand::getCommand);
 
         if (yesNoCommand.equals(YES)) {

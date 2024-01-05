@@ -30,7 +30,7 @@ public class InputReader {
         T result;
         while (true) {
             try {
-                result = resultMapper.apply(Integer.parseInt(read())-1);
+                result = resultMapper.apply(Integer.parseInt(read()) - 1);
                 break;
             } catch (Exception e) {
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");

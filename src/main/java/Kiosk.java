@@ -1,8 +1,8 @@
+import domain.screen.ScreenCore;
 import manager.cart.CartManager;
 import manager.history.HistoryManager;
 import manager.product.OptionManager;
 import manager.product.ProductManager;
-import domain.screen.ScreenCore;
 import ui.screen.MainScreen;
 import ui.screen.ProductScreen;
 import ui.screen.TotalSalesScreen;

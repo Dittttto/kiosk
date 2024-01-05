@@ -24,7 +24,7 @@ public enum YesNoCommand {
     }
 
     public static boolean isYes(final int number) {
-        if (YES.number != number){
+        if (YES.number != number) {
             throw new IllegalArgumentException();
         }
 

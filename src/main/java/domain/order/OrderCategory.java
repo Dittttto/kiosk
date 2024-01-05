@@ -10,15 +10,15 @@ public enum OrderCategory {
     private final String name;
     private final String description;
 
-    OrderCategory(final String name,final String description) {
+    OrderCategory(final String name, final String description) {
         this.name = name;
         this.description = description;
     }
 
-    public static Map<String, OrderCategory> getOrderCategoryMap(){
+    public static Map<String, OrderCategory> getOrderCategoryMap() {
         final Map<String, OrderCategory> map = new HashMap<>();
 
-        for (OrderCategory category: OrderCategory.values()) {
+        for (OrderCategory category : OrderCategory.values()) {
             map.put(category.name.toUpperCase(), category);
         }
 

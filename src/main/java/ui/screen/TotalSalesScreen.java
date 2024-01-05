@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class TotalSalesScreen {
 
-    public void active(final Map<String, BigDecimal> salesHistory,final BigDecimal totalSaleAmount) {
+    public void active(final Map<String, BigDecimal> salesHistory, final BigDecimal totalSaleAmount) {
         showTotalSaleAmount(totalSaleAmount);
         System.out.println();
         showTotalSales(salesHistory);
