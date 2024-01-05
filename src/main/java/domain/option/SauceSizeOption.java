@@ -1,15 +1,17 @@
-package data.product;
+package domain.option;
+
+import data.product.Option;
 
 import java.math.BigDecimal;
 
-public enum GlassSizeOption implements Option {
-    LARGE("750ml", BigDecimal.valueOf(2000)),
-    MEDIUM("500ml", BigDecimal.ZERO);
+public enum SauceSizeOption implements Option {
+    HONEY("꿀", BigDecimal.valueOf(500)),
+    NONE("없음", BigDecimal.ZERO);
 
     private final String name;
     private final BigDecimal addPrice;
 
-    GlassSizeOption(String name, BigDecimal addPrice) {
+    SauceSizeOption(String name, BigDecimal addPrice) {
         this.name = name;
         this.addPrice = addPrice;
     }
