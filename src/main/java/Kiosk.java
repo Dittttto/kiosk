@@ -1,5 +1,5 @@
 import domain.core.KioskCore;
-import manager.cart.CartManager;
+import manager.cart.OrderManager;
 import manager.history.HistoryManager;
 import manager.product.OptionManager;
 import manager.product.ProductManager;
@@ -15,7 +15,7 @@ public class Kiosk {
         final ProductManager productManager = new ProductManager();
         final HistoryManager historyManager = new HistoryManager();
         final OptionManager optionManager = new OptionManager();
-        final CartManager cartManager = new CartManager();
+        final OrderManager orderManager = new OrderManager();
 
         // Screen
         final OrderConfirmScreen orderConfirmScreen = new OrderConfirmScreen();
@@ -33,7 +33,7 @@ public class Kiosk {
                 productManager,
                 historyManager,
                 optionManager,
-                cartManager,
+                orderManager,
                 orderConfirmScreen,
                 totalSalesScreen,
                 productScreen,

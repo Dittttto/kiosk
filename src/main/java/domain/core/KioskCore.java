@@ -5,7 +5,7 @@ import domain.menu.Product;
 import domain.order.Order;
 import domain.order.OrderList;
 import domain.screen.InputCommand;
-import manager.cart.CartManager;
+import manager.cart.OrderManager;
 import manager.history.HistoryManager;
 import manager.product.OptionManager;
 import manager.product.ProductManager;
@@ -26,7 +26,7 @@ public class KioskCore {
     private final ProductManager productManager;
     private final HistoryManager historyManager;
     private final OptionManager optionManager;
-    private final CartManager cartManager;
+    private final OrderManager orderManager;
 
     // Screen
     private final OrderConfirmScreen orderConfirmScreen;
@@ -43,7 +43,7 @@ public class KioskCore {
     public KioskCore(ProductManager productManager,
                      HistoryManager historyManager,
                      OptionManager optionManager,
-                     CartManager cartManager,
+                     OrderManager orderManager,
                      OrderConfirmScreen orderConfirmScreen,
                      TotalSalesScreen totalSalesScreen,
                      ProductScreen productScreen,
@@ -55,7 +55,7 @@ public class KioskCore {
         this.productManager = productManager;
         this.historyManager = historyManager;
         this.optionManager = optionManager;
-        this.cartManager = cartManager;
+        this.orderManager = orderManager;
         this.orderConfirmScreen = orderConfirmScreen;
         this.totalSalesScreen = totalSalesScreen;
         this.productScreen = productScreen;
@@ -85,7 +85,7 @@ public class KioskCore {
     }
 
     private void shutdown() {
-        cartManager.clearCart();
+        orderManager.clearCart();
         System.out.println("Kiosk를 종료합니다. 감사합니다.");
     }
 
@@ -98,14 +98,14 @@ public class KioskCore {
         boolean isCancel = orderCancelToast.active();
 
         if (isCancel) {
-            cartManager.clearCart();
+            orderManager.clearCart();
         }
 
         activeMainScreen();
     }
 
     private boolean checkOpenOrders() {
-        if (!cartManager.hasOrder()) {
+        if (!orderManager.hasOrder()) {
             System.out.println("장바구니가 비어있습니다.");
             return true;
         }
@@ -160,7 +160,7 @@ public class KioskCore {
             return;
         }
 
-        final OrderList orders = cartManager.getOrders();
+        final OrderList orders = orderManager.getOrders();
         final boolean confirmOrder = orderConfirmScreen.active(orders);
 
         if (!confirmOrder) {
@@ -168,7 +168,7 @@ public class KioskCore {
             return;
         }
 
-        cartManager.clearCart();
+        orderManager.clearCart();
         activeOrderNumberPopUp(historyManager.makeOrder(orders));
     }
 
@@ -180,7 +180,7 @@ public class KioskCore {
             return;
         }
 
-        cartManager.addToCart(order);
+        orderManager.addToCart(order);
         activeMainScreen();
     }
 }

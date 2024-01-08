@@ -39,10 +39,12 @@ public class HistoryManager {
     }
 
     public void cancelOrder(final long orderNumber) {
+        // TODO implement cancel order in progress
         orderHistory.remove(orderNumber);
     }
 
     public void cancelOrder() {
+        // TODO implement order history remove all
         orderHistory.clear();
     }
 }
