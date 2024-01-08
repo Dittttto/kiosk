@@ -1,9 +1,10 @@
-package domain.screen;
+package domain.core;
 
 import data.product.Option;
 import domain.menu.Product;
 import domain.order.Order;
 import domain.order.OrderList;
+import domain.screen.InputCommand;
 import manager.cart.CartManager;
 import manager.history.HistoryManager;
 import manager.product.OptionManager;
@@ -19,7 +20,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ScreenCore {
+public class KioskCore {
     // Manager
     private final ProductManager productManager;
     private final HistoryManager historyManager;
@@ -38,18 +39,18 @@ public class ScreenCore {
     private final AddCartToast addCartToast;
     private final OptionToast optionToast;
 
-    public ScreenCore(ProductManager productManager,
-                      HistoryManager historyManager,
-                      OptionManager optionManager,
-                      CartManager cartManager,
-                      OrderConfirmScreen orderConfirmScreen,
-                      TotalSalesScreen totalSalesScreen,
-                      ProductScreen productScreen,
-                      MainScreen mainScreen,
-                      OrderNumberToast orderNumberToast,
-                      OrderCancelToast orderCancelToast,
-                      AddCartToast addCartToast,
-                      OptionToast optionToast) {
+    public KioskCore(ProductManager productManager,
+                     HistoryManager historyManager,
+                     OptionManager optionManager,
+                     CartManager cartManager,
+                     OrderConfirmScreen orderConfirmScreen,
+                     TotalSalesScreen totalSalesScreen,
+                     ProductScreen productScreen,
+                     MainScreen mainScreen,
+                     OrderNumberToast orderNumberToast,
+                     OrderCancelToast orderCancelToast,
+                     AddCartToast addCartToast,
+                     OptionToast optionToast) {
         this.productManager = productManager;
         this.historyManager = historyManager;
         this.optionManager = optionManager;

@@ -1,4 +1,4 @@
-import domain.screen.ScreenCore;
+import domain.core.KioskCore;
 import manager.cart.CartManager;
 import manager.history.HistoryManager;
 import manager.product.OptionManager;
@@ -28,7 +28,7 @@ public class Kiosk {
         final AddCartToast addCartToast = new AddCartToast();
         final OptionToast optionToast = new OptionToast();
 
-        final ScreenCore core = new ScreenCore(
+        final KioskCore core = new KioskCore(
                 productManager,
                 historyManager,
                 optionManager,
