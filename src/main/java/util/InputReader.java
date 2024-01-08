@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.function.IntFunction;
 
 public class InputReader {
+    public static final String INVALID_USER_INPUT = "잘못된 입력입니다. 다시 입력해주세요.";
+
     private InputReader() {
     }
 
@@ -18,8 +20,8 @@ public class InputReader {
             try {
                 result = resultMapper.apply(Integer.parseInt(read()));
                 break;
-            } catch (Exception e) {
-                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_USER_INPUT);
             }
         }
 
@@ -32,8 +34,8 @@ public class InputReader {
             try {
                 result = resultMapper.apply(Integer.parseInt(read()) - 1);
                 break;
-            } catch (Exception e) {
-                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_USER_INPUT);
             }
         }
 
