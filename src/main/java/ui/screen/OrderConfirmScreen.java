@@ -1,4 +1,4 @@
-package ui.toast;
+package ui.screen;
 
 import domain.order.OrderList;
 import domain.screen.YesNoCommand;
