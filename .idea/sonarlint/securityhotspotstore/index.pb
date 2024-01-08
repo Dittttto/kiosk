@@ -256,3 +256,11 @@ W
 0src/main/java/domain/option/GlassSizeOption.java,6/9/6978f14f9b1318b1d65e5bcae47b28b84528ef3a
 `
 0src/main/java/domain/option/SauceSizeOption.java,0/6/064a3b48c8bfe3f343a942b80b8b2e6c180a417f
+_
+/src/main/java/ui/screen/OrderConfirmScreen.java,4/d/4d27c7f3050c8ac8f59dea5db441549cc05c4a48
+X
+(src/main/java/domain/core/KioskCore.java,4/4/44b394cde435ef171e7e9c6b2a0bee74e8d7cc27
+Q
+!src/main/java/ui/toast/Toast.java,a/1/a1cbfabe308685c1b64665753c3de7af765412ce
+\
+,src/main/java/manager/cart/OrderManager.java,1/f/1fcb2099dc20acd92fbf5275eb45043cc97bde0e
