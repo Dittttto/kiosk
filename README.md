@@ -45,6 +45,16 @@
 - IntelliJ Ultimate
 
 ### 클래스 요청 흐름
+<img width=400 src="https://github.com/DevFrog92/kiosk/assets/82052272/2e7d2a9c-93fa-4200-8960-ccebca0e5bfa"/>
+
+### 구현 결과
+
+<img width="400" alt="image" src="https://github.com/DevFrog92/kiosk/assets/82052272/5a8374c6-87aa-4b62-b017-a8734e79aac1"> <br/>
+<img width="400" alt="image" src="https://github.com/DevFrog92/kiosk/assets/82052272/bf628e1a-ff85-451e-b728-2ff11154ed4e"> <br/>
+<img width="400" alt="image" src="https://github.com/DevFrog92/kiosk/assets/82052272/ce2f1f3c-4be1-4030-a510-9c7c03abb384"> <br/>
+<img width="400" alt="image" src="https://github.com/DevFrog92/kiosk/assets/82052272/59daa956-c780-437a-bdd4-a2b87eed1093"> <br/>
+<img width="400" alt="image" src="https://github.com/DevFrog92/kiosk/assets/82052272/9d16a40c-763f-4b05-84b4-6b317258d20d"> <br/>
+<img width="400" alt="image" src="https://github.com/DevFrog92/kiosk/assets/82052272/f7002732-902e-4b3b-912c-2896882628f9"> 
 
 ### 구현 과정
 
