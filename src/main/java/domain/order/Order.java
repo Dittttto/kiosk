@@ -9,7 +9,7 @@ public class Order {
     private final String option;
     private int quantity;
 
-    public Order(String name, String description, BigDecimal price, String option) {
+    public Order(final String name, final String description, final BigDecimal price, final String option) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -17,7 +17,7 @@ public class Order {
         this.quantity = 1;
     }
 
-    public Order(String name, String description, BigDecimal price) {
+    public Order(final String name, final String description, final BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;

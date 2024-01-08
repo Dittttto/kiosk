@@ -19,9 +19,9 @@ public class MainScreen {
 
     private void showMenuCategory() {
         CommonTemplate.showMenuTitle("NBC PUB");
-        List<InputCommand> menuInputCommand = InputCommand.getMenuInputCommand();
-        Map<String, MenuCategory> menuCategoryMap = MenuCategory.getMenuCategoryMap();
-        StringBuilder sb = new StringBuilder();
+        final List<InputCommand> menuInputCommand = InputCommand.getMenuInputCommand();
+        final Map<String, MenuCategory> menuCategoryMap = MenuCategory.getMenuCategoryMap();
+        final StringBuilder sb = new StringBuilder();
         menuInputCommand.forEach(command -> {
             MenuCategory category = menuCategoryMap.get(command.name());
             sb.append(command.getNumber())
@@ -35,10 +35,9 @@ public class MainScreen {
 
     private void showOrderCategory() {
         CommonTemplate.showMenuTitle("ORDER");
-        List<InputCommand> orderInputCommand = InputCommand.getOrderInputCommand();
-        Map<String, OrderCategory> orderCategoryMap = OrderCategory.getOrderCategoryMap();
-
-        StringBuilder sb = new StringBuilder();
+        final List<InputCommand> orderInputCommand = InputCommand.getOrderInputCommand();
+        final Map<String, OrderCategory> orderCategoryMap = OrderCategory.getOrderCategoryMap();
+        final StringBuilder sb = new StringBuilder();
         orderInputCommand.forEach(command -> {
             OrderCategory category = orderCategoryMap.get(command.name());
             sb.append(command.getNumber())
@@ -50,7 +49,7 @@ public class MainScreen {
         System.out.println(sb);
     }
 
-    private String categoryTemplate(String name, String desc) {
+    private String categoryTemplate(final String name, final String desc) {
         return String.format("%-10s | %s", name, desc);
     }
 }

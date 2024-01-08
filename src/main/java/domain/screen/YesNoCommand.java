@@ -8,11 +8,11 @@ public enum YesNoCommand {
 
     private final int number;
 
-    YesNoCommand(int number) {
+    YesNoCommand(final int number) {
         this.number = number;
     }
 
-    public static YesNoCommand getCommand(int number) {
+    public static YesNoCommand getCommand(final int number) {
         return Arrays.stream(YesNoCommand.values())
                 .filter(yesNoCommand -> yesNoCommand.number == number)
                 .findFirst()
@@ -23,8 +23,8 @@ public enum YesNoCommand {
         return number;
     }
 
-    public static boolean isYes(int number) {
-        if (YES.number != number){
+    public static boolean isYes(final int number) {
+        if (YES.number != number) {
             throw new IllegalArgumentException();
         }
 

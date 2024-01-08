@@ -14,15 +14,15 @@ public class HistoryManager {
     private BigDecimal totalSaleAmount = BigDecimal.ZERO;
     public long sequence = 0L;
 
-    public long makeOrder(OrderList orders) {
+    public long makeOrder(final OrderList orders) {
         orderHistory.put(++sequence, orders);
         totalSaleAmount = totalSaleAmount.add(orders.getTotalPrice());
         accumulate(orders);
         return sequence;
     }
 
-    public void accumulate(OrderList orderList) {
-        List<Order> orders = orderList.getOrders();
+    public void accumulate(final OrderList orderList) {
+        final List<Order> orders = orderList.getOrders();
         orders.forEach(order -> {
             String name = order.getName();
             BigDecimal price = order.getPrice();
@@ -38,11 +38,13 @@ public class HistoryManager {
         return salesHistory;
     }
 
-    public void cancelOrder(long orderNumber) {
+    public void cancelOrder(final long orderNumber) {
+        // TODO implement cancel order in progress
         orderHistory.remove(orderNumber);
     }
 
     public void cancelOrder() {
+        // TODO implement order history remove all
         orderHistory.clear();
     }
 }

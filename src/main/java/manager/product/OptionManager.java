@@ -22,7 +22,7 @@ public class OptionManager {
         options.put("SODA", List.of(LARGE, MEDIUM));
     }
 
-    public List<Option> getOptions(String productName) {
+    public List<Option> getOptions(final String productName) {
         return options.get(productName);
     }
 }

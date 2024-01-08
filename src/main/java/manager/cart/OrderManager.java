@@ -3,10 +3,10 @@ package manager.cart;
 import domain.order.Order;
 import domain.order.OrderList;
 
-public class CartManager {
+public class OrderManager {
     private final Cart cart = new Cart();
 
-    public void addToCart(Order order) {
+    public void addToCart(final Order order) {
         cart.insert(order);
     }
 

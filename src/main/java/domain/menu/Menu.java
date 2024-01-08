@@ -4,7 +4,7 @@ public class Menu {
     private final String name;
     private final String description;
 
-    public Menu(String name, String description) {
+    public Menu(final String name, final String description) {
         this.name = name;
         this.description = description;
     }

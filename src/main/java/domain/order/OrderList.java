@@ -7,12 +7,12 @@ public class OrderList {
     private final List<Order> orders;
     private final BigDecimal totalPrice;
 
-    public OrderList(List<Order> orders) {
+    public OrderList(final List<Order> orders) {
         this.orders = orders;
         this.totalPrice = calcTotalPrice(orders);
     }
 
-    private BigDecimal calcTotalPrice(List<Order> orders) {
+    private BigDecimal calcTotalPrice(final List<Order> orders) {
         return orders.stream().map(Order::getPrice)
                 .reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     }

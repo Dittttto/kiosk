@@ -1,14 +1,16 @@
-package domain.screen;
+package domain.core;
 
 import data.product.Option;
 import domain.menu.Product;
 import domain.order.Order;
 import domain.order.OrderList;
-import manager.cart.CartManager;
+import domain.screen.InputCommand;
+import manager.cart.OrderManager;
 import manager.history.HistoryManager;
 import manager.product.OptionManager;
 import manager.product.ProductManager;
 import ui.screen.MainScreen;
+import ui.screen.OrderConfirmScreen;
 import ui.screen.ProductScreen;
 import ui.screen.TotalSalesScreen;
 import ui.toast.*;
@@ -19,51 +21,53 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ScreenCore {
+public class KioskCore {
+    // Manager
     private final ProductManager productManager;
-    private final CartManager cartManager;
     private final HistoryManager historyManager;
     private final OptionManager optionManager;
+    private final OrderManager orderManager;
 
-    private final MainScreen mainScreen;
-    private final ProductScreen productScreen;
-    private final TotalSalesScreen totalSalesScreen;
-
-    private final AddCartToast addCartToast;
+    // Screen
     private final OrderConfirmScreen orderConfirmScreen;
+    private final TotalSalesScreen totalSalesScreen;
+    private final ProductScreen productScreen;
+    private final MainScreen mainScreen;
+
+    // Toast
     private final OrderNumberToast orderNumberToast;
     private final OrderCancelToast orderCancelToast;
+    private final AddCartToast addCartToast;
     private final OptionToast optionToast;
 
-    public ScreenCore(ProductManager manager,
-                      MainScreen mainScreen,
-                      ProductScreen productScreen,
-                      TotalSalesScreen totalSalesScreen,
-                      AddCartToast addCartToast,
-                      CartManager cartManager,
-                      OrderConfirmScreen orderConfirmScreen,
-                      HistoryManager historyManager,
-                      OrderNumberToast orderNumberToast,
-                      OrderCancelToast orderCancelToast,
-                      OptionManager optionManager,
-                      OptionToast optionToast
-                      ) {
-        this.productManager = manager;
-        this.mainScreen = mainScreen;
-        this.productScreen = productScreen;
-        this.totalSalesScreen = totalSalesScreen;
-        this.addCartToast = addCartToast;
-        this.cartManager = cartManager;
-        this.orderConfirmScreen = orderConfirmScreen;
+    public KioskCore(ProductManager productManager,
+                     HistoryManager historyManager,
+                     OptionManager optionManager,
+                     OrderManager orderManager,
+                     OrderConfirmScreen orderConfirmScreen,
+                     TotalSalesScreen totalSalesScreen,
+                     ProductScreen productScreen,
+                     MainScreen mainScreen,
+                     OrderNumberToast orderNumberToast,
+                     OrderCancelToast orderCancelToast,
+                     AddCartToast addCartToast,
+                     OptionToast optionToast) {
+        this.productManager = productManager;
         this.historyManager = historyManager;
+        this.optionManager = optionManager;
+        this.orderManager = orderManager;
+        this.orderConfirmScreen = orderConfirmScreen;
+        this.totalSalesScreen = totalSalesScreen;
+        this.productScreen = productScreen;
+        this.mainScreen = mainScreen;
         this.orderNumberToast = orderNumberToast;
         this.orderCancelToast = orderCancelToast;
-        this.optionManager = optionManager;
+        this.addCartToast = addCartToast;
         this.optionToast = optionToast;
     }
 
     public void activeMainScreen() {
-        InputCommand command = mainScreen.active();
+        final InputCommand command = mainScreen.active();
         switch (command) {
             case SHUTDOWN -> shutdown();
             case TOTAL_SALES -> activeTotalSalesScreen();
@@ -74,14 +78,14 @@ public class ScreenCore {
     }
 
     private void activeTotalSalesScreen() {
-        BigDecimal totalSaleAmount = historyManager.getTotalSaleAmount();
-        Map<String, BigDecimal> salesHistory = historyManager.getSalesHistory();
+        final BigDecimal totalSaleAmount = historyManager.getTotalSaleAmount();
+        final Map<String, BigDecimal> salesHistory = historyManager.getSalesHistory();
         totalSalesScreen.active(salesHistory, totalSaleAmount);
         activeMainScreen();
     }
 
     private void shutdown() {
-        cartManager.clearCart();
+        orderManager.clearCart();
         System.out.println("Kiosk를 종료합니다. 감사합니다.");
     }
 
@@ -94,14 +98,14 @@ public class ScreenCore {
         boolean isCancel = orderCancelToast.active();
 
         if (isCancel) {
-            cartManager.clearCart();
+            orderManager.clearCart();
         }
 
         activeMainScreen();
     }
 
     private boolean checkOpenOrders() {
-        if (!cartManager.hasOrder()) {
+        if (!orderManager.hasOrder()) {
             System.out.println("장바구니가 비어있습니다.");
             return true;
         }
@@ -109,9 +113,9 @@ public class ScreenCore {
         return false;
     }
 
-    private void activeProductScreen(String menu) {
-        List<Product> products = productManager.getProductsByMenu(menu);
-        Product product = productScreen.active(products, menu);
+    private void activeProductScreen(final String menu) {
+        final List<Product> products = productManager.getProductsByMenu(menu);
+        final Product product = productScreen.active(products, menu);
         Order order = new Order(product.getName(),
                 product.getDescription(),
                 product.getPrice());
@@ -119,9 +123,9 @@ public class ScreenCore {
         activeAddCartPopUp(order, menu);
     }
 
-    private Order activeOptionToast(Order order, String menu) {
-        List<Option> options = optionManager.getOptions(menu);
-        Option selectOption = optionToast.active(options, order);
+    private Order activeOptionToast(final Order order, final String menu) {
+        final List<Option> options = optionManager.getOptions(menu);
+        final Option selectOption = optionToast.active(options, order);
         return new Order(
                 order.getName(),
                 order.getDescription(),
@@ -130,15 +134,15 @@ public class ScreenCore {
     }
 
 
-    private void activeOrderNumberPopUp(long orderNumber) {
+    private void activeOrderNumberPopUp(final long orderNumber) {
         orderNumberToast.active(orderNumber);
         setTimer();
     }
 
     private void setTimer() {
-        long countTime = 3000L;
-        Timer timer = new Timer("Timer");
-        TimerTask task = new TimerTask() {
+        final long countTime = 3000L;
+        final Timer timer = new Timer("Timer");
+        final TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 activeMainScreen();
@@ -156,26 +160,27 @@ public class ScreenCore {
             return;
         }
 
-        OrderList orders = cartManager.getOrders();
-        boolean confirmOrder = orderConfirmScreen.active(orders);
+        final OrderList orders = orderManager.getOrders();
+        final boolean confirmOrder = orderConfirmScreen.active(orders);
 
         if (!confirmOrder) {
             activeMainScreen();
             return;
         }
-        cartManager.clearCart();
+
+        orderManager.clearCart();
         activeOrderNumberPopUp(historyManager.makeOrder(orders));
     }
 
-    private void activeAddCartPopUp(Order order, String menu) {
-        boolean isAdd = addCartToast.active(order);
+    private void activeAddCartPopUp(final Order order, final String menu) {
+        final boolean isAdd = addCartToast.active(order);
 
         if (!isAdd) {
             activeProductScreen(menu);
             return;
         }
 
-        cartManager.addToCart(order);
+        orderManager.addToCart(order);
         activeMainScreen();
     }
 }
